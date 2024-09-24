@@ -7,13 +7,10 @@ import { useDispatch } from "react-redux";
 import { getListConfig } from "../apis/Config.api";
 
 const NavbarHorizontal = () => {
-  const [fmsName, setFmsName] = useState("FMS");
+  const [fmsName, setFmsName] = useState("MMS");
   useEffect(() => {
     let loadData = async () => {
       let data = await getListConfig();
-      let nameSoftware = data?.data?.name_software;
-      setFmsName(nameSoftware);
-      document.title = nameSoftware;
     };
     loadData();
   }, []);
@@ -57,10 +54,10 @@ const NavbarHorizontal = () => {
           >
             <div className="mr-4">{fmsName}</div>
             <div style={{ width: "300px" }}>
-              <HeaderUnitDropdown onChange={onChange}></HeaderUnitDropdown>
+              {/* <HeaderUnitDropdown onChange={onChange}></HeaderUnitDropdown> */}
             </div>
 
-            <SearchBar></SearchBar>
+            {/* <SearchBar></SearchBar> */}
           </div>
 
           <div

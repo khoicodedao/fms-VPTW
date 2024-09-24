@@ -1,36 +1,36 @@
-import { useRef, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { login } from "../../apis/Login.api";
 import validator from "validator";
 import GlobalContext from "../../context/global.context";
 import LocalStorage from "../../helpers/LocalStorage";
-// import { useHistory, Redirect, useLocation, Navigate } from 'react-router'
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
-let Login = (props) => {
-  let navigate = useNavigate();
+let Login = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { setGlobal } = useContext(GlobalContext);
   const [alert, setAlert] = useState(false);
-  const userNameElement = useRef(null);
-  const passWordElement = useRef(null);
-  let checkLogin = async (e) => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const checkLogin = async (e) => {
     e.preventDefault();
-    let userName = userNameElement.current.value;
-    let passWord = passWordElement.current.value;
     let userNameValidated = validator.isEmpty(userName, {
       ignore_whitespace: true,
     });
-    let passWordValidated = validator.isEmpty(passWord, {
+    let passWordValidated = validator.isEmpty(password, {
       ignore_whitespace: true,
     });
-    let data =
-      userNameValidated || passWordValidated
-        ? setAlert(true)
-        : await login(userName, passWord);
+
+    if (userNameValidated || passWordValidated) {
+      setAlert(true);
+      return;
+    }
+
+    let data = await login(userName, password);
 
     if (data?.code == 200) {
-      console.log(data.code);
       let userData = data?.data?.[0];
       setGlobal({ ...userData });
       LocalStorage.set("user", JSON.stringify(userData));
@@ -38,7 +38,6 @@ let Login = (props) => {
         type: "CHANGE",
         payload: userData?.conditions?.unit_code,
       });
-
       navigate("/");
     } else {
       setAlert(true);
@@ -66,11 +65,11 @@ let Login = (props) => {
                         <div className="alert alert-warning">
                           <button
                             type="button"
-                            class="close"
+                            className="close"
                             data-dismiss="alert"
                             aria-label="Close"
                           >
-                            <i class="icofont icofont-close-line-circled"></i>
+                            <i className="icofont icofont-close-line-circled"></i>
                           </button>
                           <strong>Warning!</strong> Lỗi đăng nhập
                           <code> Hãy thử lại</code>
@@ -80,24 +79,23 @@ let Login = (props) => {
                   </div>
                   <div className="form-group form-primary">
                     <input
-                      ref={userNameElement}
                       type="text"
-                      name="email"
                       className="form-control"
                       required
                       placeholder="Tên tài khoản"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
                     />
                     <span className="form-bar" />
                   </div>
                   <div className="form-group form-primary">
                     <input
-                      autoComplete="current-password"
-                      ref={passWordElement}
                       type="password"
-                      name="password"
                       className="form-control"
                       required
                       placeholder="Mật khẩu"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <span className="form-bar" />
                   </div>
@@ -120,4 +118,5 @@ let Login = (props) => {
     </section>
   );
 };
+
 export default Login;

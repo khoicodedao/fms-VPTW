@@ -1,4 +1,4 @@
-import { toggleFullScreen } from '../helpers/ViewFunction'
+import { toggleFullScreen } from "../helpers/ViewFunction";
 
 const Header = () => {
   return (
@@ -13,12 +13,12 @@ const Header = () => {
             className="mobile-menu"
             id="mobile-collapse"
             href="#!"
-            style={{ paddingTop: '10px' }}
+            style={{ paddingTop: "10px" }}
           >
             <i className="feather icon-menu icon-toggle-right" />
           </a>
-          <a href="index-1.htm" style={{ fontSize: '20px' }}>
-            FMS
+          <a href="index-1.htm" style={{ fontSize: "20px" }}>
+            MMS
           </a>
           <a className="mobile-options">
             <i className="feather icon-more-horizontal" />
@@ -43,7 +43,7 @@ const Header = () => {
               <a
                 href="#!"
                 onClick={() => {
-                  toggleFullScreen()
+                  toggleFullScreen();
                 }}
               >
                 <i className="feather icon-maximize full-screen" />
@@ -56,7 +56,7 @@ const Header = () => {
                 <div className="dropdown-toggle" data-toggle="dropdown">
                   <img
                     src="/assets/files/assets/images/user.png"
-                    style={{ width: '20px' }}
+                    style={{ width: "20px" }}
                     className="img-radius"
                     alt="User-Profile-Image"
                   />
@@ -100,7 +100,7 @@ const Header = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
