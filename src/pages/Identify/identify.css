@@ -1,0 +1,27 @@
+#identify-page .dx-datagrid-filter-row td[aria-colindex="7"] {
+  visibility: hidden;
+}
+
+#identify-page .dx-datagrid-filter-row td[aria-colindex="9"] {
+  visibility: hidden;
+}
+
+#identify-page .dx-datagrid-filter-row td[aria-colindex="10"] {
+  visibility: hidden;
+}
+#identify-page .dx-datagrid-filter-row td[aria-colindex="11"] {
+  visibility: hidden;
+}
+.card-header {
+  padding-bottom: 3px !important;
+}
+.ant-steps-icon {
+  top: 6.5px !important;
+}
+#dataUnit .dx-toolbar-after {
+  left: 46% !important;
+}
+#dataUnit .dx-widget {
+  height: 40px !important;
+  width: 37px !important;
+}

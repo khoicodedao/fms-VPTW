@@ -1,0 +1,9 @@
+div[page="alert"] .dx-datagrid-filter-row td[aria-colindex="9"] {
+  visibility: hidden;
+}
+.dx-list-select-all-checkbox {
+  height: 24px;
+}
+.dx-list-select-all {
+  display: none;
+}
