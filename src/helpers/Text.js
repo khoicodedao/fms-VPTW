@@ -1,8 +1,8 @@
 export default Text = {
   //===========================CARD========================
   CARD_POLICY: [
-    "Máy tính quân sự kết nối Internet",
-    "Máy tính Internet kết nối quân sự",
+    "Máy tính kết nối Internet",
+    // "Máy tính Internet kết nối",
     "Máy tính sử dụng USB không an toàn",
     "Máy tính không đăng ký kết nối mạng",
   ],

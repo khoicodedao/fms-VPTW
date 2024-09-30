@@ -54,51 +54,32 @@ export default function Home() {
                 color="pink"
                 data={[
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-violent?group_field=mac&filter=alert_level_id,=,3"
-                      >
-                        {Text.CARD_POLICY[0]}
-                      </Link>
-                    ),
+                    name: Text.CARD_POLICY[0],
+
                     data: card?.countDeviceConnectInternet ?? 0,
                   },
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/device?group_field=mac&filter=network_type,=,Internet"
-                      >
-                        {Text.CARD_POLICY[1]}
-                      </Link>
-                    ),
+                    name: Text.CARD_POLICY[1],
+
                     data: card?.countdeviceConnectTSLqs ?? 0,
                   },
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-violent?group_field=mac&filter=alert_type,=,USB"
-                      >
-                        {Text.CARD_POLICY[2]}
-                      </Link>
-                    ),
+                    name: Text.CARD_POLICY[2],
 
                     data: card?.countdevicePlugInUSB ?? 0,
                   },
-                  {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/device?group_field=mac&filter=network_type,=,Không kết nối mạng"
-                      >
-                        {Text.CARD_POLICY[3]}
-                      </Link>
-                    ),
+                  // {
+                  //   name: (
+                  //     <Link
+                  //       style={{ color: "white", textDecoration: "underline" }}
+                  //       to="/device?group_field=mac&filter=network_type,=,Không kết nối mạng"
+                  //     >
+                  //       {Text.CARD_POLICY[3]}
+                  //     </Link>
+                  //   ),
 
-                    data: card?.countDeviceNotRegisterNetwork ?? 0,
-                  },
+                  //   data: card?.countDeviceNotRegisterNetwork ?? 0,
+                  // },
                 ]}
                 total={
                   card.countDeviceConnectInternet +
@@ -117,36 +98,17 @@ export default function Home() {
                 link="/detail-candc"
                 data={[
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-candc?group_field=mac&filter=alert_type,=,Black_ip"
-                      >
-                        IP độc hại
-                      </Link>
-                    ),
+                    name: "IP độc hại",
+
                     data: card?.countdeviceCandCIP || 0,
                   },
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-candc?group_field=mac&filter=alert_type,=,Black_domain"
-                      >
-                        Tên miền độc hại
-                      </Link>
-                    ),
+                    name: "Tên miền độc hại",
+
                     data: card?.countdeviceCandCDomain || 0,
                   },
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-candc?page=detail-unit"
-                      >
-                        Số lượng đơn vị
-                      </Link>
-                    ),
+                    name: "Số lượng đơn vị",
                     data: card?.countUnitCandC || 0,
                   },
                 ]}
@@ -159,36 +121,15 @@ export default function Home() {
               <Cards
                 data={[
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-malware?group_field=mac&filter=alert_level_id,=,3"
-                      >
-                        Mã độc mức cao
-                      </Link>
-                    ),
+                    name: "Mã độc mức cao",
                     data: card?.countdeviceMalwareLV2 || 0,
                   },
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-malware?group_field=mac&filter=alert_level_id,=,2"
-                      >
-                        Mã độc mức trung bình
-                      </Link>
-                    ),
+                    name: "Mã độc mức trung bình",
                     data: card?.countdeviceMalwareLV1 || 0,
                   },
                   {
-                    name: (
-                      <Link
-                        style={{ color: "white", textDecoration: "underline" }}
-                        to="/detail-malware?page=detail-unit"
-                      >
-                        Số lượng đơn vị
-                      </Link>
-                    ),
+                    name: "Số lượng đơn vị",
                     data: card?.countUnitMalware || 0,
                   },
                 ]}
@@ -221,7 +162,7 @@ export default function Home() {
               <CardWrapper
                 align="center"
                 header={{
-                  name: "Cài đặt MiAV",
+                  name: "Cài đặt Agent",
                   detail: "",
                 }}
               >
@@ -254,7 +195,7 @@ export default function Home() {
                     card?.countMiAVNotConnect +
                     card?.countMiAVNotInstall
                   }
-                  customShow={`Tổng MiAV:${
+                  customShow={`Tổng:${
                     card?.countMiAVActive + card?.countMiAVNotConnect
                   }`}
                 ></ArmChartPie>
@@ -323,7 +264,7 @@ export default function Home() {
                       card?.countFMSOffline +
                       card?.countFMCOffline
                     }
-                    customShow={`Online/Offline: FMS: ${card?.countFMSOnline}/${card?.countFMSOffline} | FMC: ${card?.countFMCOnline}/${card?.countFMCOffline}`}
+                    customShow={`Online/Offline: Server: ${card?.countFMSOnline}/${card?.countFMSOffline} | Network: ${card?.countFMCOnline}/${card?.countFMCOffline}`}
                   ></ArmChartPie>
                   {/* <ArmChartPie
                     id="fmcPie"

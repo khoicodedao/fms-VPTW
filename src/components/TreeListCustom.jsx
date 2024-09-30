@@ -1,9 +1,10 @@
-import React from 'react'
-import { TreeList, SearchPanel, Selection } from 'devextreme-react/tree-list'
+import React from "react";
+import { TreeList, SearchPanel, Selection } from "devextreme-react/tree-list";
 
 export default function TreeListCustom(props) {
-  let { id, keyExpr, parentIdExpr, data, children, onFocusedRowChanged } = props
-  let expandedRowKeys = localStorage.getItem('expandRowKeys').split(',')
+  let { id, keyExpr, parentIdExpr, data, children, onFocusedRowChanged } =
+    props;
+  let expandedRowKeys = localStorage?.getItem("expandRowKeys")?.split(",");
   return (
     <TreeList
       autoExpandAll={true}
@@ -24,5 +25,5 @@ export default function TreeListCustom(props) {
       <SearchPanel visible={true} />
       {children}
     </TreeList>
-  )
+  );
 }

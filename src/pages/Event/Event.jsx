@@ -45,16 +45,13 @@ function Event() {
   }, [unitGlobal]);
   return (
     <div className="row" page="event">
-      <div className="col-md-12 col-lg-12  col-xl-12 dropdownInput"></div>
-      <div className="col-md-12 col-lg-12  col-xl-12">
+      <div className="col-md-9 col-lg-9  col-xl-9">
         <div id="paging">
           <CardWrapper
             header={{
               name: "Danh sách sự kiện",
             }}
           >
-            <UnitDrawer onFocusedRowChanged={onFocusedRowChanged}></UnitDrawer>
-
             {unitFullName !== "" && (
               <Button className="ml-2">{unitFullName}</Button>
             )}
@@ -182,6 +179,10 @@ function Event() {
             </PagingDataGrid>
           </CardWrapper>
         </div>
+      </div>
+      <div className="col-md-3 col-xl-3 col-xxl-3">
+        {" "}
+        <UnitDrawer onFocusedRowChanged={onFocusedRowChanged}></UnitDrawer>
       </div>
     </div>
   );

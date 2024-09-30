@@ -1,51 +1,51 @@
-import CardWrapper from '../../components/CardWrapper'
-import { useState, useEffect } from 'react'
+import CardWrapper from "../../components/CardWrapper";
+import { useState, useEffect } from "react";
 import DataGrid, {
   Export,
   GroupPanel,
   Selection,
-} from 'devextreme-react/data-grid'
-import { Column } from 'devextreme-react/data-grid'
-import { getStatisticMiAV } from '../../apis/Statistic.api'
-import { useSelector } from 'react-redux'
-import { Input } from 'antd'
-import BugOutlined from '@ant-design/icons/BugOutlined'
-import onExporting from '../../helpers/exportExcelFunction'
+} from "devextreme-react/data-grid";
+import { Column } from "devextreme-react/data-grid";
+import { getStatisticMiAV } from "../../apis/Statistic.api";
+import { useSelector } from "react-redux";
+import { Input } from "antd";
+import BugOutlined from "@ant-design/icons/BugOutlined";
+import onExporting from "../../helpers/exportExcelFunction";
 
 export default function MiAVNewVersion() {
-  let { startDate, endDate } = useSelector((state) => state.changeDateReducer)
-  const [miAVVersion, setMiAVVersion] = useState('')
-  const [data, setData] = useState([])
+  let { startDate, endDate } = useSelector((state) => state.changeDateReducer);
+  const [miAVVersion, setMiAVVersion] = useState("");
+  const [data, setData] = useState([]);
   const loadData = async (value) => {
     let { data } = await getStatisticMiAV({
       version: value,
       start_date: startDate,
       end_date: endDate,
-      unit_code: 'all',
-    })
+      unit_code: "all",
+    });
 
-    setData([...data])
-  }
+    setData([...data]);
+  };
 
   return (
     <div className="row">
       <div className="col-md-12 col-xl-12">
         <CardWrapper
           header={{
-            name: 'MiAV Phiên bản mới',
+            name: "MiAV Phiên bản mới",
             detail:
-              'Thống kê danh sách thiết bị cài đặt MiAV theo phiên bản mới',
+              "Thống kê danh sách thiết bị cài đặt Agent theo phiên bản mới",
           }}
         >
           <Input
-            placeholder="Phiên bản MIAV"
+            placeholder="Phiên bản Agent"
             className="mb-2"
             value={miAVVersion}
-            style={{ width: '20%' }}
+            style={{ width: "20%" }}
             addonAfter={<BugOutlined />}
             onChange={(e) => {
-              setMiAVVersion(e.target.value)
-              loadData(e.target.value)
+              setMiAVVersion(e.target.value);
+              loadData(e.target.value);
             }}
           />
           <GroupPanel visible={true} />
@@ -59,7 +59,7 @@ export default function MiAVNewVersion() {
             showRowLines={true}
             rowAlternationEnabled={true}
             allowColumnResizing={true}
-            columnResizingMode={'widget'}
+            columnResizingMode={"widget"}
             columnAutoWidth={true}
           >
             <Selection mode="multiple" />
@@ -71,5 +71,5 @@ export default function MiAVNewVersion() {
         </CardWrapper>
       </div>
     </div>
-  )
+  );
 }

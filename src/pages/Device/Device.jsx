@@ -79,14 +79,12 @@ export default function Device() {
         title="Hồ sơ thiết bị"
       />
 
-      <div className="col-md-12 col-lg-12  col-xl-12 dropdownInput"></div>
-      <div className="col-md-12 col-xl-12">
+      <div className="col-md-9 col-xl-9">
         <CardWrapper
           header={{
             name: "Quản lý thiết bị tham gia mạng",
           }}
         >
-          <UnitDrawer onFocusedRowChanged={onFocusedRowChanged}></UnitDrawer>
           {unitFullName && <Button className="ml-2">{unitFullName}</Button>}
           <PagingDataGrid
             url={url}
@@ -197,13 +195,13 @@ export default function Device() {
             <Column
               dataField="miav_version"
               width={150}
-              caption="Phiên bản MiAV"
+              caption="Phiên bản Agent"
               allowHeaderFiltering={false}
             />
             <Column
               width={150}
               dataField="last_seen_miav"
-              caption="Thời gian MiAV"
+              caption="Thời gian Agent"
               allowHeaderFiltering={false}
               formItem={{ visible: false }}
             />
@@ -251,6 +249,10 @@ export default function Device() {
             />
           </PagingDataGrid>
         </CardWrapper>
+      </div>
+      <div className="col-md-3 col-xl-3 col-xxl-3">
+        {" "}
+        <UnitDrawer onFocusedRowChanged={onFocusedRowChanged}></UnitDrawer>
       </div>
     </div>
   );

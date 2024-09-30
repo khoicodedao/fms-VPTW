@@ -96,11 +96,11 @@ export default function ExportByUnit() {
         <CardWrapper
           header={{
             name: "Số liệu theo đơn vị",
-            detail: "Thống kê các số liệu theo từng đơn vị trực thuộc",
+            detail: "",
           }}
         >
           <Input
-            placeholder="Phiên bản MIAV"
+            placeholder="Phiên bản Agent"
             className="mb-2"
             value={verMiAV}
             style={{ width: "20%" }}
@@ -136,14 +136,17 @@ export default function ExportByUnit() {
             <Column dataField="tendv" caption="Tên đơn vị" />
             <Column dataField="count" caption="Số lượng thiết bị" />
             <Column dataField="computer" caption="Số lượng Máy tính" />
-            <Column dataField="miAVs" caption="Số lượng MiAV" />
+            <Column dataField="miAVs" caption="Số lượng Agent" />
             <Column
               dataField="miAVVersion"
-              caption={`Số lượng MiAV phiên bản ${verMiAV}`}
+              caption={`Số lượng Agent phiên bản ${verMiAV}`}
             />
 
             <Column dataField="idents" caption="Số lượng định danh" />
-            <Column dataField="miAVActive" caption="Số lượng MiAV hoạt động" />
+            <Column
+              dataField="miAVActive"
+              caption="Số lượng Agent  hoạt động"
+            />
 
             <Column
               dataField="region"

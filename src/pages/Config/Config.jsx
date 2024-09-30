@@ -1,34 +1,34 @@
-import CardWrapper from '../../components/CardWrapper'
-import { getListConfig, editConfig } from '../../apis/Config.api'
-import { useState, useEffect } from 'react'
-import { EditOutlined, LockOutlined } from '@ant-design/icons'
-import { Input, Button, Alert } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
-import { InputNumber } from 'antd'
-import ClockCircleOutlined from '@ant-design/icons/ClockCircleOutlined'
-import LocalStorage from '../../helpers/LocalStorage'
+import CardWrapper from "../../components/CardWrapper";
+import { getListConfig, editConfig } from "../../apis/Config.api";
+import { useState, useEffect } from "react";
+import { EditOutlined, LockOutlined } from "@ant-design/icons";
+import { Input, Button, Alert } from "antd";
+import { SaveOutlined } from "@ant-design/icons";
+import { InputNumber } from "antd";
+import ClockCircleOutlined from "@ant-design/icons/ClockCircleOutlined";
+import LocalStorage from "../../helpers/LocalStorage";
 export default function ConfigView() {
-  const { role } = LocalStorage.get('user')
-  let isSupperAdmin = role == 'superAdmin'
-  const [config, setConfig] = useState([])
-  const [alert, setAlert] = useState(0)
-  const [timeDisconnected, setTimeDisconnected] = useState(0)
-  const [timeSendData, setTimeSendData] = useState('0')
-  const [timeMiAVConnect, setTimeMiAVConnect] = useState(0)
-  let [unitCode, setUnitCode] = useState('')
-  let [urlSend, setUrlSend] = useState('')
-  let [urlShareService, setUrlShareService] = useState('')
-  let [saveStatus, setSaveStatus] = useState(true)
+  const { role } = LocalStorage?.get("user") || "user";
+  let isSupperAdmin = role == "superAdmin";
+  const [config, setConfig] = useState([]);
+  const [alert, setAlert] = useState(0);
+  const [timeDisconnected, setTimeDisconnected] = useState(0);
+  const [timeSendData, setTimeSendData] = useState("0");
+  const [timeMiAVConnect, setTimeMiAVConnect] = useState(0);
+  let [unitCode, setUnitCode] = useState("");
+  let [urlSend, setUrlSend] = useState("");
+  let [urlShareService, setUrlShareService] = useState("");
+  let [saveStatus, setSaveStatus] = useState(true);
   let loadData = async () => {
-    let { data } = await getListConfig()
-    setConfig({ ...data })
-    setTimeDisconnected(data?.check_day_online)
-    setTimeSendData(data?.time_send_schedule[2])
-    setUnitCode(data?.unit_code || '')
-    setUrlSend(data?.url_send || '')
-    setUrlShareService(data?.url_share_service || '')
-    setTimeMiAVConnect(data?.check_miav_connect || '')
-  }
+    let { data } = await getListConfig();
+    setConfig({ ...data });
+    setTimeDisconnected(data?.check_day_online);
+    setTimeSendData(data?.time_send_schedule[2]);
+    setUnitCode(data?.unit_code || "");
+    setUrlSend(data?.url_send || "");
+    setUrlShareService(data?.url_share_service || "");
+    setTimeMiAVConnect(data?.check_miav_connect || "");
+  };
   let sendEdit = () => {
     editConfig({
       ...config,
@@ -40,28 +40,28 @@ export default function ConfigView() {
       check_miav_connect: timeMiAVConnect,
     })
       .then(() => {
-        setAlert(1)
-        setSaveStatus(true)
+        setAlert(1);
+        setSaveStatus(true);
       })
-      .catch(() => setAlert(2))
-  }
+      .catch(() => setAlert(2));
+  };
   useEffect(() => {
-    loadData()
-  }, [])
+    loadData();
+  }, []);
   return (
     <CardWrapper
       header={{
-        name: 'Danh sách cấu hình',
+        name: "Danh sách cấu hình",
       }}
     >
       {alert != 0 && (
         <Alert
-          message={alert == 1 ? 'Thành công' : 'Thất bại'}
-          type={alert == 1 ? 'success' : 'error'}
+          message={alert == 1 ? "Thành công" : "Thất bại"}
+          type={alert == 1 ? "success" : "error"}
           showIcon
           closable
           description={`Thay đổi dữ liệu ${
-            alert == 1 ? 'Thành công' : 'Thất bại'
+            alert == 1 ? "Thành công" : "Thất bại"
           }`}
         />
       )}
@@ -81,8 +81,8 @@ export default function ConfigView() {
                     Mã phần mềm:
                   </label>
                   <Input
-                    addonAfter={<LockOutlined style={{ cursor: 'pointer' }} />}
-                    value={config?.id_software || ''}
+                    addonAfter={<LockOutlined style={{ cursor: "pointer" }} />}
+                    value={config?.id_software || ""}
                     disabled
                   />
                 </div>
@@ -91,8 +91,8 @@ export default function ConfigView() {
                     Tên phần mềm:
                   </label>
                   <Input
-                    addonAfter={<LockOutlined style={{ cursor: 'pointer' }} />}
-                    value={config?.name_software || ''}
+                    addonAfter={<LockOutlined style={{ cursor: "pointer" }} />}
+                    value={config?.name_software || ""}
                     disabled
                   />
                 </div>
@@ -103,11 +103,11 @@ export default function ConfigView() {
                     Mã đơn vị:
                   </label>
                   <Input
-                    addonAfter={<EditOutlined style={{ cursor: 'pointer' }} />}
+                    addonAfter={<EditOutlined style={{ cursor: "pointer" }} />}
                     value={unitCode}
                     onChange={(e) => {
-                      setUnitCode(e.target.value)
-                      setSaveStatus(false)
+                      setUnitCode(e.target.value);
+                      setSaveStatus(false);
                     }}
                     disabled={!isSupperAdmin}
                   />
@@ -117,8 +117,8 @@ export default function ConfigView() {
                     Ngày cài đặt:
                   </label>
                   <Input
-                    addonAfter={<LockOutlined style={{ cursor: 'pointer' }} />}
-                    value={config?.created_at || ''}
+                    addonAfter={<LockOutlined style={{ cursor: "pointer" }} />}
+                    value={config?.created_at || ""}
                     disabled
                   />
                 </div>
@@ -129,11 +129,11 @@ export default function ConfigView() {
                     <b>Địa chỉ đơn vị cấp trên:</b>
                   </label>
                   <Input
-                    addonAfter={<EditOutlined style={{ cursor: 'pointer' }} />}
+                    addonAfter={<EditOutlined style={{ cursor: "pointer" }} />}
                     value={urlSend}
                     onChange={(e) => {
-                      setUrlSend(e.target.value)
-                      setSaveStatus(false)
+                      setUrlSend(e.target.value);
+                      setSaveStatus(false);
                     }}
                     disabled={!isSupperAdmin}
                   />
@@ -143,11 +143,11 @@ export default function ConfigView() {
                     <b>Địa chỉ dịch vụ dùng chung :</b>
                   </label>
                   <Input
-                    addonAfter={<EditOutlined style={{ cursor: 'pointer' }} />}
+                    addonAfter={<EditOutlined style={{ cursor: "pointer" }} />}
                     value={urlShareService}
                     onChange={(e) => {
-                      setUrlShareService(e.target.value)
-                      setSaveStatus(false)
+                      setUrlShareService(e.target.value);
+                      setSaveStatus(false);
                     }}
                     disabled={!isSupperAdmin}
                   />
@@ -178,12 +178,12 @@ export default function ConfigView() {
               <InputNumber
                 min={1}
                 value={timeSendData}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 addonAfter={<ClockCircleOutlined />}
                 formatter={(value) => `${value} Phút`}
                 onChange={(value) => {
-                  setTimeSendData(value)
-                  setSaveStatus(false)
+                  setTimeSendData(value);
+                  setSaveStatus(false);
                 }}
                 disabled={!isSupperAdmin}
               />
@@ -196,12 +196,12 @@ export default function ConfigView() {
               <InputNumber
                 min={1}
                 value={timeDisconnected}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 addonAfter={<ClockCircleOutlined />}
                 formatter={(value) => `${value} Ngày`}
                 onChange={(value) => {
-                  setTimeDisconnected(value)
-                  setSaveStatus(false)
+                  setTimeDisconnected(value);
+                  setSaveStatus(false);
                 }}
                 disabled={!isSupperAdmin}
               />
@@ -215,12 +215,12 @@ export default function ConfigView() {
               <InputNumber
                 min={1}
                 value={timeMiAVConnect}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 addonAfter={<ClockCircleOutlined />}
                 formatter={(value) => `${value} Ngày`}
                 onChange={(value) => {
-                  setTimeMiAVConnect(value)
-                  setSaveStatus(false)
+                  setTimeMiAVConnect(value);
+                  setSaveStatus(false);
                 }}
                 disabled={!isSupperAdmin}
               />
@@ -229,5 +229,5 @@ export default function ConfigView() {
         </div>
       </div>
     </CardWrapper>
-  )
+  );
 }

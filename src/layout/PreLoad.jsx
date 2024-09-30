@@ -1,8 +1,7 @@
 export default function Preload() {
-    return (
-
-        <div className="theme-loader">
-          <div className="ball-scale">
+  return (
+    <div className="theme-loader">
+      {/* <div className="ball-scale">
             <div className="contain">
               <div className="ring">
                 <div className="frame" />
@@ -35,9 +34,7 @@ export default function Preload() {
                 <div className="frame" />
               </div>
             </div>
-          </div>
-        </div>
-      );
-
-
+          </div> */}
+    </div>
+  );
 }

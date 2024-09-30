@@ -102,7 +102,7 @@ export default function Fms() {
     <div id="page-software">
       <CardWrapper
         header={{
-          name: "Danh sách quản lý FMS-FMC",
+          name: "Danh sách quản lý phần mềm",
         }}
       >
         <PagingDataGrid

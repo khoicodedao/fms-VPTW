@@ -143,14 +143,12 @@ export default function Identify() {
         onHiding={togglePopup}
         contentRender={renderContent}
       />
-      <div className="col-md-12 col-xl-12 col-xxl-12 dropdownInput"></div>
-      <div className="col-md-12 col-xl-12">
+      <div className="col-md-9 col-xl-9">
         <CardWrapper
           header={{
             name: "Quản lý thiết bị định danh",
           }}
         >
-          <UnitDrawer onFocusedRowChanged={onFocusedRowChanged}></UnitDrawer>
           {unitFullName !== "" && (
             <ButtonAnt className="ml-2">{unitFullName}</ButtonAnt>
           )}
@@ -349,6 +347,10 @@ export default function Identify() {
             </Toolbar>
           </PagingDataGrid>
         </CardWrapper>
+      </div>
+      <div className="col-md-3 col-xl-3 col-xxl-3">
+        {" "}
+        <UnitDrawer onFocusedRowChanged={onFocusedRowChanged}></UnitDrawer>
       </div>
     </div>
   );

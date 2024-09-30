@@ -64,9 +64,9 @@ const Navbar = (props) => {
         </li>
 
         <li>
-          <NavLink name="Quản lý FMS/FMC" to="/software">
+          <NavLink name="Quản lý máy chủ" to="/software">
             <span className="ion-laptop" style={{ fontSize: "20px" }} />
-            <span className="nav-label pl-2">Quản lý FMS/FMC</span>
+            <span className="nav-label pl-2">Quản lý máy chủ</span>
           </NavLink>
         </li>
 
