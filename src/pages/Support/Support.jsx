@@ -14,18 +14,18 @@ export default function Support() {
     setListFileSupport([
       {
         STT: 1,
-        name: "Hướng dẫn cài đặt MiAV",
+        name: "Hướng dẫn cài đặt Agent",
         link: "http://fms.bqp/MiAV/Huong_dan/HDSD%20t%C3%ADnh%20n%C4%83ng%20%C4%91%E1%BB%8Bnh%20danh%20tr%C3%AAn%20h%E1%BB%87%20th%E1%BB%91ng%20FMS.docx",
       },
       {
         STT: 2,
-        name: "Hướng dẫn cài đặt FMS&FMC",
+        name: "Hướng dẫn cài đặt Server",
         link: "http://update.fms.bqp/caidat_fms_fmc_miav/HuongDanCaiDatFMS_FMC_MiAV.docx",
       },
 
       {
         STT: 3,
-        name: "Hướng dẫn sử dụng",
+        name: "Hướng dẫn sử dụng hệ thống",
         link: "http://update.fms.bqp/caidat_fms_fmc_miav/HDSD_FMS_4CAP.docx",
       },
     ]);

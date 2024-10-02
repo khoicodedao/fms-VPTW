@@ -56,12 +56,26 @@ export default function Home() {
                   {
                     name: Text.CARD_POLICY[0],
 
-                    data: card?.countDeviceConnectInternet ?? 0,
+                    data: (
+                      <Link
+                        style={{ color: "blue", fontSize: "18px" }}
+                        to="/detail-violent?group_field=mac&filter=alert_level_id,=,3"
+                      >
+                        {card?.countDeviceConnectInternet ?? 0}
+                      </Link>
+                    ),
                   },
                   {
                     name: Text.CARD_POLICY[1],
 
-                    data: card?.countdeviceConnectTSLqs ?? 0,
+                    data: (
+                      <Link
+                        style={{ color: "blue", fontSize: "18px" }}
+                        to="/detail-violent?group_field=mac&filter=alert_level_id,=,3"
+                      >
+                        {card?.countdeviceConnectTSLqs ?? 0}
+                      </Link>
+                    ),
                   },
                   {
                     name: Text.CARD_POLICY[2],
