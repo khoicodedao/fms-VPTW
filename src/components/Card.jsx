@@ -58,7 +58,9 @@ const Card = (props) => {
             <h6 className="text-muted m-b-0">{name}</h6>
           </div>
           <div className="col-4 text-right">
-            <i className="feather icon-bar-chart f-28" />
+            <NavLink className="download-icon" to={link ?? "/#"}>
+              <i className="feather icon-bar-chart f-28" />
+            </NavLink>
           </div>
         </div>
       </div>

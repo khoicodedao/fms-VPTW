@@ -37,8 +37,8 @@ const PagingDataGrid = function ({
   const tagData = useRef(null); //list tag of filter header and filter row
   const dataGridRef = useRef(null);
   const filterText = useRef(null);
-  // let token = LocalStorage.get("user").token;
-  let token = "";
+  let token = LocalStorage.get("user").token;
+  // let token = "";
   const onValueChanged = (e) => {
     setGroup(e.value);
   };

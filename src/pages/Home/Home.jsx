@@ -56,26 +56,12 @@ export default function Home() {
                   {
                     name: Text.CARD_POLICY[0],
 
-                    data: (
-                      <Link
-                        style={{ color: "blue", fontSize: "18px" }}
-                        to="/detail-violent?group_field=mac&filter=alert_level_id,=,3"
-                      >
-                        {card?.countDeviceConnectInternet ?? 0}
-                      </Link>
-                    ),
+                    data: card?.countDeviceConnectInternet ?? 0,
                   },
                   {
                     name: Text.CARD_POLICY[1],
 
-                    data: (
-                      <Link
-                        style={{ color: "blue", fontSize: "18px" }}
-                        to="/detail-violent?group_field=mac&filter=alert_level_id,=,3"
-                      >
-                        {card?.countdeviceConnectTSLqs ?? 0}
-                      </Link>
-                    ),
+                    data: card?.countdeviceConnectTSLqs ?? 0,
                   },
                   {
                     name: Text.CARD_POLICY[2],
@@ -170,9 +156,63 @@ export default function Home() {
         </section>
         {/* End section card */}
         {/* Start section Pie */}
-        <section name="pie">
+
+        {/* End section Pie */}
+        <section name="column">
           <div className="row">
-            <div className="col-xl-4 col-md-6">
+            <div className="col-xl-14 col-md-4">
+              <CardWrapper
+                align="center"
+                header={{
+                  name: "Định danh thiết bị",
+                  detail: "",
+                }}
+              >
+                <ArmChartPie
+                  data={[
+                    {
+                      name: "Đã định danh",
+                      count: card?.countDeviceIdent || 0,
+                      color: am4core.color("#B71C1C"),
+                      url: "/device?filter=status_ident,=,Đã định danh",
+                    },
+                    {
+                      name: "Chưa định danh",
+                      count: card?.countDeviceNotIdent || 0,
+                      color: am4core.color("#E53935"),
+                      url: "/device?filter=status_ident,=,Chưa định danh",
+                    },
+                  ]}
+                  id="miAV"
+                  field="count"
+                  category="name"
+                  total={card?.countDeviceIdent + card?.countDeviceNotIdent}
+                ></ArmChartPie>
+              </CardWrapper>
+            </div>
+            <div className="col-xl-8 col-md-8">
+              <CardWrapper
+                align="left"
+                header={{
+                  name: "Biểu đồ thống kê thiết bị nhiễm mã độc theo từng đơn vị",
+                  detail: "",
+                }}
+              >
+                <ArmChartColumn
+                  url="/detail-malware?filter=unit_full_name,contains,"
+                  id="chartMalware"
+                  xAxisName="Đơn vị"
+                  yAxisName="Số lượng"
+                  data={chartMalware}
+                  color="#1fc9e0"
+                />
+              </CardWrapper>
+            </div>
+          </div>
+        </section>
+        <section name="column">
+          <div className="row">
+            <div className="col-xl-4 col-md-4">
               <CardWrapper
                 align="center"
                 header={{
@@ -185,19 +225,19 @@ export default function Home() {
                     {
                       name: "Đang hoạt động",
                       count: card?.countMiAVActive || 0,
-                      color: am4core.color("#16b2e9"),
+                      color: am4core.color("#1B5E20"),
                       url: "/device?filter=status_install_miav,=,Đang hoạt động",
                     },
                     {
                       name: "Không hoạt động",
                       count: card?.countMiAVNotConnect || 0,
-                      color: am4core.color("#ff3025"),
+                      color: am4core.color("#43A047"),
                       url: "/device?filter=status_install_miav,=,Mất kết nối",
                     },
                     {
                       name: "Chưa cài đặt",
                       count: card?.countMiAVNotInstall || 0,
-                      color: am4core.color("#6d6270"),
+                      color: am4core.color("#66BB6A"),
                       url: "/device?filter=status_install_miav,=,Chưa cài đặt",
                     },
                   ]}
@@ -215,37 +255,29 @@ export default function Home() {
                 ></ArmChartPie>
               </CardWrapper>
             </div>
-            <div className="col-xl-4 col-md-6">
+            <div className="col-xl-8 col-md-8">
               <CardWrapper
-                align="center"
+                align="left"
                 header={{
-                  name: "Định danh thiết bị",
+                  name: "Biểu đồ thống kê thiết bị kết nối máy chủ điều khiển (C&C) theo từng đơn vị",
                   detail: "",
                 }}
               >
-                <ArmChartPie
-                  data={[
-                    {
-                      name: "Đã định danh",
-                      count: card?.countDeviceIdent || 0,
-                      color: am4core.color("#ffd454"),
-                      url: "/device?filter=status_ident,=,Đã định danh",
-                    },
-                    {
-                      name: "Chưa định danh",
-                      count: card?.countDeviceNotIdent || 0,
-                      color: am4core.color("#ffaa54"),
-                      url: "/device?filter=status_ident,=,Chưa định danh",
-                    },
-                  ]}
-                  id="miAV"
-                  field="count"
-                  category="name"
-                  total={card?.countDeviceIdent + card?.countDeviceNotIdent}
-                ></ArmChartPie>
+                <ArmChartColumn
+                  url="/detail-candc?filter=unit_full_name,contains,"
+                  id="chartCandC"
+                  xAxisName="Đơn vị"
+                  yAxisName="Số lượng"
+                  data={chartCandC}
+                  color="#1fc9e0"
+                />
               </CardWrapper>
             </div>
-            <div className="col-xl-4 col-md-6">
+          </div>
+        </section>
+        <section name="column">
+          <div className="row">
+            <div className="col-xl-4 col-md-4">
               <CardWrapper
                 align="center"
                 header={{
@@ -260,13 +292,13 @@ export default function Home() {
                       {
                         name: "Số lượng Online",
                         count: card?.countFMSOnline + card?.countFMCOnline,
-                        color: am4core.color("#fe9365"),
+                        color: am4core.color("#E65100"),
                         url: "/software?filter=status,=,Hoạt động",
                       },
                       {
                         name: "Số lượng Offline",
                         count: card?.countFMSOffline + card?.countFMCOffline,
-                        color: am4core.color("#fe6c65"),
+                        color: am4core.color("#EF5350"),
                         url: "/software?filter=status,=,Mất kết nối",
                       },
                     ]}
@@ -300,72 +332,7 @@ export default function Home() {
                 </div>
               </CardWrapper>
             </div>
-            {/* <div className="col-xl-3 col-md-6">
-            <CardWrapper
-              align="center"
-              header={{
-                name: 'Biểu đồ thống kê số lượng cảnh báo',
-                detail: '',
-              }}
-            >
-              <ArmChart
-                data={alert}
-                id="alert"
-                field="count"
-                category="name"
-              ></ArmChart>
-            </CardWrapper>
-          </div> */}
-          </div>
-        </section>
-        {/* End section Pie */}
-        <section name="column">
-          <div className="row">
-            <div className="col-xl-12 col-md-12">
-              <CardWrapper
-                align="left"
-                header={{
-                  name: "Biểu đồ thống kê thiết bị nhiễm mã độc theo từng đơn vị",
-                  detail: "",
-                }}
-              >
-                <ArmChartColumn
-                  url="/detail-malware?filter=unit_full_name,contains,"
-                  id="chartMalware"
-                  xAxisName="Đơn vị"
-                  yAxisName="Số lượng"
-                  data={chartMalware}
-                  color="#1fc9e0"
-                />
-              </CardWrapper>
-            </div>
-          </div>
-        </section>
-        <section name="column">
-          <div className="row">
-            <div className="col-xl-12 col-md-12">
-              <CardWrapper
-                align="left"
-                header={{
-                  name: "Biểu đồ thống kê thiết bị kết nối máy chủ điều khiển (C&C) theo từng đơn vị",
-                  detail: "",
-                }}
-              >
-                <ArmChartColumn
-                  url="/detail-candc?filter=unit_full_name,contains,"
-                  id="chartCandC"
-                  xAxisName="Đơn vị"
-                  yAxisName="Số lượng"
-                  data={chartCandC}
-                  color="#1fc9e0"
-                />
-              </CardWrapper>
-            </div>
-          </div>
-        </section>
-        <section name="column">
-          <div className="row">
-            <div className="col-xl-12 col-md-12">
+            <div className="col-xl-8 col-md-8">
               <CardWrapper
                 align="left"
                 header={{

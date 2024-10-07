@@ -18,7 +18,7 @@ var Layout = function (props) {
             width: `calc(100% -  ${isCollapsed ? 126 : 270}px)`,
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
+            // justifyContent: "space-between",
             transition: "all 0.1s ease-in-out",
             paddingTop: "15px",
           }}

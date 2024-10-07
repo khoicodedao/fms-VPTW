@@ -61,10 +61,14 @@ section[name="logout"] div.dropdown-menu {
 }
 
 .navbar-global {
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  background: #404e67;
   padding: 0 !important;
   height: 66px !important;
   color: black;
+  border-bottom: 1px solid white;
+}
+.navbar-brand a {
+  color: white !important;
 }
 
 .navbar-global .navbar-brand {
@@ -80,7 +84,7 @@ section[name="logout"] div.dropdown-menu {
 }
 
 .navbar-primary {
-  background: linear-gradient(135deg, #1f1c2c, #928dab);
+  background: #404e67;
   bottom: 0px;
   left: 0px;
   position: absolute;

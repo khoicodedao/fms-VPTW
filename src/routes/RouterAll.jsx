@@ -41,11 +41,11 @@ export function RouterAll() {
   ];
   const ProtectedRouteWithLayout = ({ children }) => {
     const auth = LocalStorage.get("user")?.role;
-    // if (!auth) {
-    //   window.location.href = "/login";
-    // } else {
-    return <Layout>{children}</Layout>;
-    // }
+    if (!auth) {
+      window.location.href = "/login";
+    } else {
+      return <Layout>{children}</Layout>;
+    }
   };
   return (
     <Routes>
